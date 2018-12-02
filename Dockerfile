@@ -39,8 +39,6 @@ RUN git clone https://gitee.com/ComsenzDiscuz/DiscuzX.git
 WORKDIR /tmp/DiscuzX
 RUN cp -r upload/* /var/www/html/ && cd /var/www/html/ && chmod a+w -R config data uc_server/data uc_client/data
 
-# Mysql user name is root, there is no passwd for mysql.
-
 ADD phpinfo.php /var/www/html/
 ADD supervisord.conf /etc/
 EXPOSE 22 80 443

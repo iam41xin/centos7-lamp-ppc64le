@@ -32,16 +32,14 @@ RUN sed -ri 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config && echo 'root:change
 RUN mkdir -p /root/.ssh && touch /root/.ssh/authorized_keys && chmod 700 /root/.ssh
 #ADD id_rsa.pub /root/.ssh/authorized_keys
 
-#disuz version
+#DiscuzX version 3.4
 WORKDIR /tmp
 RUN git clone https://gitee.com/ComsenzDiscuz/DiscuzX.git
-RUN cd DiscuzX \
-    && mv upload/* /var/www/html/
-    && cd /var/www/html/
-    && chmod a+w -R config data uc_server/data uc_client/data \
+WORKDIR /tmp/DiscuzX
+RUN mv upload/* /var/www/html/ && cd /var/www/html/ && chmod a+w -R config data uc_server/data uc_client/data
 
 ADD phpinfo.php /var/www/html/
 ADD supervisord.conf /etc/
 EXPOSE 22 80 443
 
-CMD ["supervisord", "-n"]
+ENTRYPOINT ["supervisord", "-n"]

@@ -37,7 +37,7 @@ RUN mkdir -p /root/.ssh && touch /root/.ssh/authorized_keys && chmod 700 /root/.
 WORKDIR /tmp
 RUN git clone https://gitee.com/ComsenzDiscuz/DiscuzX.git
 WORKDIR /tmp/DiscuzX
-RUN mv upload/* /var/www/html/ && cd /var/www/html/ && chmod a+w -R config data uc_server/data uc_client/data
+RUN cp -r upload/* /var/www/html/ && cd /var/www/html/ && chmod a+w -R config data uc_server/data uc_client/data
 
 # Mysql user name is root, there is no passwd for mysql.
 

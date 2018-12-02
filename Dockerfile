@@ -25,18 +25,21 @@ RUN pip install supervisor
 RUN yum install -y openssh-server openssh-clients passwd
 
 RUN ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_dsa_key && ssh-keygen -q -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key
- 
+
+# We need to modify 'changeme' to your own passwd
 RUN sed -ri 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config && echo 'root:changeme' | chpasswd
 
 # Put your own public key at id_rsa.pub for key-based login.
 RUN mkdir -p /root/.ssh && touch /root/.ssh/authorized_keys && chmod 700 /root/.ssh
 #ADD id_rsa.pub /root/.ssh/authorized_keys
 
-#DiscuzX version 3.4
+# DiscuzX version 3.4
 WORKDIR /tmp
 RUN git clone https://gitee.com/ComsenzDiscuz/DiscuzX.git
 WORKDIR /tmp/DiscuzX
 RUN mv upload/* /var/www/html/ && cd /var/www/html/ && chmod a+w -R config data uc_server/data uc_client/data
+
+# Mysql user name is root, there is no passwd for mysql.
 
 ADD phpinfo.php /var/www/html/
 ADD supervisord.conf /etc/

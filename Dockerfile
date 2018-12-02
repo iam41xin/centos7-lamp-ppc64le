@@ -6,7 +6,7 @@ MAINTAINER iam41xin
 RUN rpm -Uvh http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
 # install httpd
-RUN yum -y install httpd vim-enhanced bash-completion unzip wget
+RUN yum -y install httpd vim-enhanced bash-completion unzip wget git
 
 # install maraidb
 RUN yum install -y mariadb-server mariadb-client
@@ -34,8 +34,8 @@ RUN mkdir -p /root/.ssh && touch /root/.ssh/authorized_keys && chmod 700 /root/.
 
 #disuz version
 RUN cd /tmp
-RUN wget http://download.comsenz.com/DiscuzX/3.2/Discuz_X3.2_SC_UTF8.zip
-RUN unzip /tmp/discuz.zip \
+RUN git clone https://gitee.com/ComsenzDiscuz/DiscuzX.git
+RUN cd Discuzx \
     && mv upload/* /var/www/html/
     && cd /var/www/html/
     && chmod a+w -R config data uc_server/data uc_client/data \

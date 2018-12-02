@@ -33,7 +33,7 @@ RUN mkdir -p /root/.ssh && touch /root/.ssh/authorized_keys && chmod 700 /root/.
 #ADD id_rsa.pub /root/.ssh/authorized_keys
 
 #disuz version
-RUN cd /tmp
+WORKDIR /tmp
 RUN git clone https://gitee.com/ComsenzDiscuz/DiscuzX.git
 RUN cd Discuzx \
     && mv upload/* /var/www/html/

@@ -35,7 +35,7 @@ RUN mkdir -p /root/.ssh && touch /root/.ssh/authorized_keys && chmod 700 /root/.
 #disuz version
 WORKDIR /tmp
 RUN git clone https://gitee.com/ComsenzDiscuz/DiscuzX.git
-RUN cd Discuzx \
+RUN cd DiscuzX \
     && mv upload/* /var/www/html/
     && cd /var/www/html/
     && chmod a+w -R config data uc_server/data uc_client/data \

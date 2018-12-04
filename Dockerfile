@@ -18,7 +18,7 @@ RUN systemctl start mariadb
 RUN yum install -y php php-mysql php-devel php-gd php-pecl-memcache php-pspell php-snmp php-xmlrpc php-xml
 
 # install supervisord
-RUN yum install -y python-pip && pip install "pip>=1.4,<1.5" --upgrade
+RUN yum install -y python-pip && pip install --upgrade pip
 RUN pip install supervisor
 
 # install sshd
